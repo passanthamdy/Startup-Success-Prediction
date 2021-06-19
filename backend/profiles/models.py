@@ -12,12 +12,12 @@ def upload_to(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, related_name="profile", on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
-    mobile = PhoneNumberField( max_length=125, unique=True, blank=True, null=True,
+    mobile = PhoneNumberField( max_length=125, unique=True, blank=True, 
                               help_text='Contact phone number')  
     
-    age = models.IntegerField(null= True, blank=True)
-    job= models.CharField( max_length=150,null= True, blank=True)
-    country = models.CharField( max_length=150,null= True, blank=True)
+    age = models.IntegerField( blank=True)
+    job= models.CharField( max_length=150, blank=True)
+    country = models.CharField( max_length=150, blank=True)
     about = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField( upload_to = upload_to,default = 'def.png')
     created_at = models.DateTimeField(auto_now_add=True)
