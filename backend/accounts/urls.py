@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework_simplejwt import views as jwt_views
-from .views import ObtainTokenPairWithColorView ,CreateCustomUser,HelloWorldView,CheckEmailExisting,ChangePasswordView
+from .views import ObtainTokenPairWithColorView ,CreateCustomUser,HelloWorldView,CheckEmailExisting,ChangePasswordView,BlacklistTokenUpdateView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter(trailing_slash=False)
@@ -13,5 +13,6 @@ urlpatterns = [
     path('token/obtain/', ObtainTokenPairWithColorView.as_view(), name='token_create'),  
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('changepassword/', ChangePasswordView.as_view()),
+    path('logout/',BlacklistTokenUpdateView().as_view()),
     path('hello/', HelloWorldView.as_view(), name='hello_world'),
 ]
